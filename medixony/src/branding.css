@@ -1,0 +1,2 @@
+.brand-logo{display:block;flex:0 0 150px;width:150px;line-height:0}.brand-logo img{display:block;width:100%;height:auto}.topbar{height:102px}.brand-logo-footer{width:150px;flex-basis:150px}.trust-mark{color:var(--coral);font:500 44px/1 var(--serif)}
+@media(max-width:768px){.topbar{height:84px}.brand-logo{width:112px;flex-basis:112px}.brand-logo-footer{width:130px;flex-basis:130px}}

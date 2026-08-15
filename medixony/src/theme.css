@@ -1,0 +1,544 @@
+/* =========================================================
+   MEDIXONY THEME SYSTEM
+   ========================================================= */
+
+:root {
+  --page-bg: #fff9f1;
+  --body-text: #123f3a;
+
+  --surface: #fff9f1;
+  --surface-raised: #fffcf7;
+  --surface-muted: #f2e9dc;
+  --surface-mint: #ddeee8;
+
+  --deep-surface: #123f3a;
+
+  --heading: #123f3a;
+  --copy: rgba(32, 38, 36, 0.76);
+  --copy-soft: rgba(32, 38, 36, 0.68);
+
+  --card: #fff9f1;
+  --cloud: #fff9f1;
+
+  --line: rgba(18, 63, 58, 0.16);
+
+  --coral: #ff7a66;
+
+  --shadow-color: rgba(18, 63, 58, 0.12);
+}
+
+html,
+body,
+#root,
+.site-shell {
+  background: var(--page-bg);
+  color: var(--body-text);
+}
+
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Smooth theme transition */
+.topbar,
+.hero,
+.context,
+.context-first,
+.how,
+.trust,
+.professionals,
+footer,
+.factor,
+.support-card,
+.canvas-card,
+.today-card,
+.placeholder-page {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+  width: 46px;
+  height: 26px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  background: var(--surface-muted);
+  color: var(--body-text);
+
+  padding: 0;
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.theme-toggle svg {
+  width: 13px;
+  height: 13px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+
+  position: absolute;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s ease;
+}
+
+.sun-icon {
+  opacity: 1;
+}
+
+.moon-icon {
+  opacity: 0;
+  transform: scale(0.6) rotate(-25deg);
+}
+
+.theme-knob {
+  width: 19px;
+  height: 19px;
+
+  background: var(--page-bg);
+  border-radius: 50%;
+
+  position: absolute;
+  left: 2px;
+
+  box-shadow: 0 2px 6px var(--shadow-color);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] {
+
+  --page-bg: #101918;
+  --body-text: #edf3ef;
+
+  --surface: #101918;
+  --surface-raised: #182321;
+  --surface-muted: #1b2926;
+  --surface-mint: #173a35;
+
+  --deep-surface: #082b28;
+
+  --heading: #edf3ef;
+
+  --copy: rgba(237, 243, 239, 0.76);
+  --copy-soft: rgba(237, 243, 239, 0.66);
+
+  --card: #182321;
+  --cloud: #e8eee9;
+
+  --line: rgba(237, 243, 239, 0.15);
+
+  --coral: #ff8b79;
+
+  --shadow-color: rgba(0, 0, 0, 0.3);
+
+  color-scheme: dark;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+[data-theme="dark"] .topbar {
+  background: #101918;
+  border-color: var(--line);
+}
+
+[data-theme="dark"] .main-nav a,
+[data-theme="dark"] .topbar-actions a {
+  color: rgba(237, 243, 239, 0.72);
+}
+
+[data-theme="dark"] .main-nav a:hover,
+[data-theme="dark"] .topbar-actions a:hover {
+  color: var(--coral);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+[data-theme="dark"] .hero {
+  background: #101918;
+}
+
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .hero h1 em {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .hero-text {
+  color: rgba(237, 243, 239, 0.72);
+}
+
+[data-theme="dark"] .hero-note {
+  color: rgba(237, 243, 239, 0.62);
+}
+
+[data-theme="dark"] .personal-signal {
+  color: rgba(237, 243, 239, 0.75);
+}
+
+
+/* =========================================================
+   HERO ILLUSTRATION
+   ========================================================= */
+
+[data-theme="dark"] .living-canvas {
+  background: #173a35;
+  box-shadow: inset 0 0 0 1px rgba(237,243,239,.05);
+}
+
+[data-theme="dark"] .canvas-cloud {
+  background: #e8eee9;
+}
+
+[data-theme="dark"] .canvas-card {
+  background: rgba(24, 35, 33, 0.94);
+  color: #edf3ef;
+
+  border-color: rgba(237, 243, 239, 0.12);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .canvas-card small {
+  color: rgba(237, 243, 239, 0.58);
+}
+
+[data-theme="dark"] .canvas-caption {
+  color: rgba(237, 243, 239, 0.58);
+}
+
+[data-theme="dark"] .orb-two {
+  background: #28584f;
+}
+
+
+/* =========================================================
+   CONTEXT SECTION
+   ========================================================= */
+
+[data-theme="dark"] .context {
+  background: #082b28;
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .context h2 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .context-body > p {
+  color: rgba(237, 243, 239, 0.74);
+}
+
+[data-theme="dark"] .traditional-panel {
+  background: #151c1b;
+}
+
+[data-theme="dark"] .medixony-panel {
+  background: #e8eee9;
+  color: #123f3a;
+}
+
+[data-theme="dark"] .question-shift > div {
+  border-color: rgba(237, 243, 239, 0.18);
+}
+
+[data-theme="dark"] .question-shift span {
+  color: rgba(237, 243, 239, 0.55);
+}
+
+[data-theme="dark"] .question-shift strong {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .question-shift .active {
+  border-color: var(--coral);
+}
+
+[data-theme="dark"] .question-shift .active strong {
+  color: #ff9d8d;
+}
+
+
+/* =========================================================
+   CONTEXT FIRST
+   ========================================================= */
+
+[data-theme="dark"] .context-first {
+  background: #101918;
+}
+
+[data-theme="dark"] .context-first h2 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .section-intro > p:not(.eyebrow),
+[data-theme="dark"] .section-heading > p {
+  color: rgba(237, 243, 239, 0.68);
+}
+
+
+/* =========================================================
+   FACTOR CARDS
+   ========================================================= */
+
+[data-theme="dark"] .factor {
+  background: #182321;
+  border-color: var(--line);
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .factor-2,
+[data-theme="dark"] .factor-5 {
+  background: #1d4039;
+}
+
+[data-theme="dark"] .factor-3 {
+  background: #3a2b29;
+}
+
+
+/* =========================================================
+   PATHWAY
+   ========================================================= */
+
+[data-theme="dark"] .pathway > span {
+  background: rgba(237, 243, 239, 0.08);
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .pathway > i {
+  background: #edf3ef;
+}
+
+[data-theme="dark"] .pathway > i::after {
+  border-color: #edf3ef;
+}
+
+[data-theme="dark"] .pathway .pathway-action {
+  background: #edf3ef;
+  color: #123f3a;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+[data-theme="dark"] .how {
+  background: #1b2926;
+}
+
+[data-theme="dark"] .how h2 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .step-card {
+  border-color: var(--line);
+}
+
+[data-theme="dark"] .step-card h3 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .step-card p {
+  color: rgba(237, 243, 239, 0.64);
+}
+
+[data-theme="dark"] .step-line {
+  background: #edf3ef;
+}
+
+
+/* =========================================================
+   TRUST / PRIVACY
+   ========================================================= */
+
+/*
+   THIS FIXES THE PROBLEM IN YOUR SCREENSHOT.
+   The old version had a light trust background
+   with white text.
+*/
+
+[data-theme="dark"] .trust {
+  background: #101918;
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .trust h2 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .trust-copy {
+  color: rgba(237, 243, 239, 0.68);
+}
+
+[data-theme="dark"] .trust ul {
+  border-color: var(--line);
+}
+
+[data-theme="dark"] .trust li {
+  color: rgba(237, 243, 239, 0.78);
+  border-color: var(--line);
+}
+
+
+/* =========================================================
+   PROFESSIONALS
+   ========================================================= */
+
+[data-theme="dark"] .professionals {
+  background: #173a35;
+}
+
+[data-theme="dark"] .professionals h2 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .support-card {
+  background: #182b28;
+  border-color: rgba(237, 243, 239, 0.12);
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .support-card h3 {
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .support-card p {
+  color: rgba(237, 243, 239, 0.65);
+}
+
+[data-theme="dark"] .coming-soon {
+  color: rgba(237, 243, 239, 0.6);
+  border-color: rgba(237, 243, 239, 0.15);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+[data-theme="dark"] .button-primary {
+  background: #edf3ef;
+  color: #123f3a;
+  border-color: #edf3ef;
+}
+
+[data-theme="dark"] .button-primary:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .text-link {
+  color: #edf3ef;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+[data-theme="dark"] footer {
+  background: #082b28;
+  color: #edf3ef;
+}
+
+[data-theme="dark"] footer a {
+  color: rgba(237, 243, 239, 0.72);
+}
+
+[data-theme="dark"] footer a:hover {
+  color: var(--coral);
+}
+
+
+/* =========================================================
+   THEME TOGGLE DARK STATE
+   ========================================================= */
+
+[data-theme="dark"] .theme-toggle {
+  background: #1b2926;
+  border-color: rgba(237, 243, 239, 0.18);
+  color: #edf3ef;
+}
+
+[data-theme="dark"] .sun-icon {
+  opacity: 0;
+  transform: scale(0.6) rotate(25deg);
+}
+
+[data-theme="dark"] .moon-icon {
+  opacity: 1;
+  transform: none;
+}
+
+[data-theme="dark"] .theme-knob {
+  transform: translateX(18px);
+  background: #173a35;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  [data-theme="dark"] .main-nav.is-open {
+    background: #101918;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
