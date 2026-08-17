@@ -2,7 +2,13 @@ import "./App.css";
 import "./checkIn.css";
 import CheckIn from "./checkIn";
 
-function Home() {
+function App() {
+  const currentPath = window.location.pathname;
+
+  if (currentPath === "/check-in" || currentPath === "/checkin") {
+    return <CheckIn />;
+  }
+
   return (
     <div className="app">
       <h1>Medixony</h1>
@@ -13,18 +19,6 @@ function Home() {
       </a>
     </div>
   );
-}
-
-function App() {
-  const path = window.location.pathname;
-
-  // Check-in page
-  if (path === "/check-in" || path === "/checkin") {
-    return <CheckIn />;
-  }
-
-  // Main page
-  return <Home />;
 }
 
 export default App;
