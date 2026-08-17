@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import './checkin.css'
+import './checkIn.css'
 
 const TOTAL_STEPS = 8
 
@@ -202,7 +202,6 @@ function CheckIcon() {
 
 function CheckIn() {
   const [step, setStep] = useState(1)
-  const [feedback, setFeedback] = useState(null)
 
   const [data, setData] = useState({
     name: '',
@@ -216,6 +215,8 @@ function CheckIn() {
     preference: '',
     noDiagnosis: false,
   })
+
+  const [feedback, setFeedback] = useState(null)
 
   const update = (field, value) => {
     setData((current) => ({
@@ -277,17 +278,11 @@ function CheckIn() {
     return true
   }
 
-  /*
-   * IMPORTANT:
-   * Step 8 must be allowed to become Step 9.
-   * Step 9 is where the snapshot is rendered.
-   */
   const nextStep = () => {
     if (!canContinue()) return
 
     if (step <= TOTAL_STEPS) {
       setStep((current) => current + 1)
-
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -337,7 +332,9 @@ function CheckIn() {
         description:
           'Step outside or move around for a few minutes without trying to solve everything at once.',
         duration:
-          data.time === '5' ? '5 minutes' : '10–20 minutes',
+          data.time === '5'
+            ? '5 minutes'
+            : '10–20 minutes',
         icon: '🚶',
       }
     }
@@ -360,7 +357,9 @@ function CheckIn() {
         description:
           'Write down everything currently taking up space in your mind. No structure and no judgment.',
         duration:
-          data.time === '5' ? '5 minutes' : '10 minutes',
+          data.time === '5'
+            ? '5 minutes'
+            : '10 minutes',
         icon: '✍️',
       }
     }
@@ -372,7 +371,9 @@ function CheckIn() {
         description:
           'Choose a calming audio exercise and let yourself pause without needing to be productive.',
         duration:
-          data.time === '5' ? '5 minutes' : '10 minutes',
+          data.time === '5'
+            ? '5 minutes'
+            : '10 minutes',
         icon: '🎧',
       }
     }
@@ -384,7 +385,9 @@ function CheckIn() {
         description:
           'Dim the lights, put your phone away and give yourself a few quiet minutes before sleep.',
         duration:
-          data.time === '5' ? '5 minutes' : '10 minutes',
+          data.time === '5'
+            ? '5 minutes'
+            : '10 minutes',
         icon: '🌙',
       }
     }
@@ -417,7 +420,9 @@ function CheckIn() {
       description:
         'Take a few quiet minutes, breathe slowly and choose one thing you can realistically do next.',
       duration:
-        data.time === '5' ? '5 minutes' : '10 minutes',
+        data.time === '5'
+          ? '5 minutes'
+          : '10 minutes',
       icon: '🌱',
     }
   }
@@ -426,8 +431,6 @@ function CheckIn() {
 
   return (
     <div className="checkin-page">
-
-      {/* HEADER */}
 
       <header className="checkin-header">
         <a href="/" className="checkin-logo">
@@ -440,11 +443,11 @@ function CheckIn() {
         <div className="checkin-header-right">
           <span>Private check-in</span>
 
-          <a href="/">Exit</a>
+          <a href="/" className="exit-link">
+            Exit
+          </a>
         </div>
       </header>
-
-      {/* PROGRESS */}
 
       {step <= TOTAL_STEPS && (
         <div className="checkin-progress">
@@ -473,8 +476,6 @@ function CheckIn() {
 
       <main className="checkin-main">
 
-        {/* STEP 1 */}
-
         {step === 1 && (
           <section className="checkin-screen intro-screen">
 
@@ -494,8 +495,8 @@ function CheckIn() {
 
             <p className="checkin-lead">
               This isn't a diagnosis or a test. It's simply a
-              conversation to help Medixony understand what
-              might be useful for you right now.
+              conversation to help Medixony understand what might
+              be useful for you right now.
             </p>
 
             <div className="name-box">
@@ -539,6 +540,7 @@ function CheckIn() {
 
                 Continue anonymously
               </button>
+
             </div>
 
             <button
@@ -557,8 +559,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 2 */}
 
         {step === 2 && (
           <section className="checkin-screen">
@@ -590,16 +590,25 @@ function CheckIn() {
                   }
                   key={item.id}
                   onClick={() =>
-                    update('lifeStage', item.id)
+                    update(
+                      'lifeStage',
+                      item.id
+                    )
                   }
                 >
+
                   <span className="option-icon">
                     {item.icon}
                   </span>
 
                   <span className="option-content">
-                    <strong>{item.title}</strong>
-                    <small>{item.text}</small>
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <small>
+                      {item.text}
+                    </small>
                   </span>
 
                   <span className="radio-mark">
@@ -607,6 +616,7 @@ function CheckIn() {
                       <CheckIcon />
                     )}
                   </span>
+
                 </button>
               ))}
 
@@ -620,8 +630,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 3 */}
 
         {step === 3 && (
           <section className="checkin-screen">
@@ -653,18 +661,27 @@ function CheckIn() {
                   }
                   key={item.id}
                   onClick={() =>
-                    update('concern', item.id)
+                    update(
+                      'concern',
+                      item.id
+                    )
                   }
                 >
-                  <span>{item.icon}</span>
 
-                  <strong>{item.title}</strong>
+                  <span>
+                    {item.icon}
+                  </span>
+
+                  <strong>
+                    {item.title}
+                  </strong>
 
                   {data.concern === item.id && (
                     <i>
                       <CheckIcon />
                     </i>
                   )}
+
                 </button>
               ))}
 
@@ -680,17 +697,26 @@ function CheckIn() {
                     : 'no-diagnosis-card'
                 }
                 onClick={() => {
+
                   update(
                     'noDiagnosis',
                     !data.noDiagnosis
                   )
 
-                  update('concern', 'unknown')
+                  update(
+                    'concern',
+                    'unknown'
+                  )
+
                 }}
               >
-                <span>🤍</span>
+
+                <span>
+                  🤍
+                </span>
 
                 <div>
+
                   <strong>
                     I don't want a diagnosis.
                   </strong>
@@ -698,10 +724,13 @@ function CheckIn() {
                   <small>
                     I just want to feel a little better.
                   </small>
+
                 </div>
 
                 <b>
-                  {data.noDiagnosis && <CheckIcon />}
+                  {data.noDiagnosis && (
+                    <CheckIcon />
+                  )}
                 </b>
 
               </button>
@@ -716,8 +745,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 4 */}
 
         {step === 4 && (
           <section className="checkin-screen">
@@ -734,8 +761,10 @@ function CheckIn() {
 
             <p className="checkin-lead">
               You selected{' '}
-              <strong>{concernTitle}</strong>.
-              Pick the option that feels closest today.
+              <strong>
+                {concernTitle}
+              </strong>
+              . Pick the option that feels closest today.
             </p>
 
             <div className="vertical-options">
@@ -753,16 +782,23 @@ function CheckIn() {
                       : 'text-option'
                   }
                   onClick={() =>
-                    update('issue', item)
+                    update(
+                      'issue',
+                      item
+                    )
                   }
                 >
-                  <span>{item}</span>
+
+                  <span>
+                    {item}
+                  </span>
 
                   <i>
                     {data.issue === item && (
                       <CheckIcon />
                     )}
                   </i>
+
                 </button>
               ))}
 
@@ -776,8 +812,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 5 */}
 
         {step === 5 && (
           <section className="checkin-screen">
@@ -793,8 +827,8 @@ function CheckIn() {
             </h1>
 
             <p className="checkin-lead">
-              Select everything that feels relevant.
-              Nothing here is a score.
+              Select everything that feels relevant. Nothing here
+              is a score.
             </p>
 
             <div className="impact-grid">
@@ -812,6 +846,7 @@ function CheckIn() {
                     toggleImpact(item)
                   }
                 >
+
                   <span className="impact-check">
                     {data.impacts.includes(item) && (
                       <CheckIcon />
@@ -819,6 +854,7 @@ function CheckIn() {
                   </span>
 
                   {item}
+
                 </button>
               ))}
 
@@ -832,8 +868,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 6 */}
 
         {step === 6 && (
           <section className="checkin-screen">
@@ -849,8 +883,8 @@ function CheckIn() {
             </h1>
 
             <p className="checkin-lead">
-              We won't recommend a 30-minute activity when
-              you only have five.
+              We won't recommend a 30-minute activity when you
+              only have five.
             </p>
 
             <div className="option-grid time-grid">
@@ -865,16 +899,27 @@ function CheckIn() {
                   }
                   key={item.id}
                   onClick={() =>
-                    update('time', item.id)
+                    update(
+                      'time',
+                      item.id
+                    )
                   }
                 >
+
                   <span className="option-icon">
                     {item.icon}
                   </span>
 
                   <span className="option-content">
-                    <strong>{item.title}</strong>
-                    <small>{item.text}</small>
+
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <small>
+                      {item.text}
+                    </small>
+
                   </span>
 
                   <span className="radio-mark">
@@ -882,6 +927,7 @@ function CheckIn() {
                       <CheckIcon />
                     )}
                   </span>
+
                 </button>
               ))}
 
@@ -895,8 +941,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 7 */}
 
         {step === 7 && (
           <section className="checkin-screen">
@@ -912,8 +956,8 @@ function CheckIn() {
             </h1>
 
             <p className="checkin-lead">
-              This helps us avoid recommending something
-              that doesn't fit your circumstances.
+              This helps us avoid recommending something that
+              doesn't fit your circumstances.
             </p>
 
             <div className="option-grid budget-grid">
@@ -928,16 +972,27 @@ function CheckIn() {
                   }
                   key={item.id}
                   onClick={() =>
-                    update('budget', item.id)
+                    update(
+                      'budget',
+                      item.id
+                    )
                   }
                 >
+
                   <span className="budget-symbol">
                     {item.icon}
                   </span>
 
                   <span className="option-content">
-                    <strong>{item.title}</strong>
-                    <small>{item.text}</small>
+
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <small>
+                      {item.text}
+                    </small>
+
                   </span>
 
                   <span className="radio-mark">
@@ -945,6 +1000,7 @@ function CheckIn() {
                       <CheckIcon />
                     )}
                   </span>
+
                 </button>
               ))}
 
@@ -958,8 +1014,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* STEP 8 */}
 
         {step === 8 && (
           <section className="checkin-screen">
@@ -991,18 +1045,27 @@ function CheckIn() {
                   }
                   key={item.id}
                   onClick={() =>
-                    update('preference', item.id)
+                    update(
+                      'preference',
+                      item.id
+                    )
                   }
                 >
-                  <span>{item.icon}</span>
 
-                  <strong>{item.title}</strong>
+                  <span>
+                    {item.icon}
+                  </span>
+
+                  <strong>
+                    {item.title}
+                  </strong>
 
                   {data.preference === item.id && (
                     <i>
                       <CheckIcon />
                     </i>
                   )}
+
                 </button>
               ))}
 
@@ -1017,10 +1080,6 @@ function CheckIn() {
 
           </section>
         )}
-
-        {/* =====================================================
-            SNAPSHOT / RESULTS
-            ===================================================== */}
 
         {step > TOTAL_STEPS && (
           <section className="results-screen">
@@ -1038,7 +1097,9 @@ function CheckIn() {
               <h1>
                 Your puzzle isn't broken.
                 <br />
-                <em>A few pieces may need attention.</em>
+                <em>
+                  A few pieces may need attention.
+                </em>
               </h1>
 
               <p>
@@ -1050,8 +1111,6 @@ function CheckIn() {
               </p>
 
             </div>
-
-            {/* SNAPSHOT CARDS */}
 
             <div className="snapshot-grid">
 
@@ -1137,8 +1196,6 @@ function CheckIn() {
 
             </div>
 
-            {/* RECOMMENDATION */}
-
             <section className="recommendation-section">
 
               <div className="recommendation-heading">
@@ -1154,8 +1211,8 @@ function CheckIn() {
                 </h2>
 
                 <p>
-                  Based on your situation, available time,
-                  budget and preference, this is one place to start.
+                  Based on your situation, available time, budget
+                  and preference, this is one place to start.
                 </p>
 
               </div>
@@ -1198,19 +1255,19 @@ function CheckIn() {
 
               </article>
 
-              {/* FEEDBACK */}
-
               <div className="feedback-box">
 
                 <div>
+
                   <strong>
                     Did this help?
                   </strong>
 
                   <span>
-                    Your feedback helps Medixony learn
-                    what works better for you.
+                    Your feedback helps Medixony learn what works
+                    better for you.
                   </span>
+
                 </div>
 
                 <div className="feedback-actions">
@@ -1234,8 +1291,13 @@ function CheckIn() {
                         setFeedback(id)
                       }
                     >
-                      <span>{icon}</span>
+
+                      <span>
+                        {icon}
+                      </span>
+
                       {label}
+
                     </button>
 
                   ))}
@@ -1253,8 +1315,6 @@ function CheckIn() {
               </div>
 
             </section>
-
-            {/* SURPRISE ME */}
 
             <section className="surprise-section">
 
@@ -1296,11 +1356,11 @@ function CheckIn() {
 
             </section>
 
-            {/* SAFETY */}
-
             <section className="results-safety">
 
-              <span>♡</span>
+              <span>
+                ♡
+              </span>
 
               <div>
 
@@ -1309,26 +1369,22 @@ function CheckIn() {
                 </strong>
 
                 <p>
-                  Medixony is a well-being support tool,
-                  not a diagnostic service. If you're experiencing
-                  severe distress or feel unsafe, consider reaching
-                  out to someone you trust or a qualified professional.
+                  Medixony is a well-being support tool, not a
+                  diagnostic service. If you're experiencing severe
+                  distress or feel unsafe, consider reaching out to
+                  someone you trust or a qualified professional.
                 </p>
 
               </div>
 
             </section>
 
-            {/* ACTIONS */}
-
             <div className="results-actions">
 
               <button
                 type="button"
                 className="secondary-result-button"
-                onClick={() =>
-                  setStep(TOTAL_STEPS)
-                }
+                onClick={previousStep}
               >
                 <BackIcon />
                 Review answers
@@ -1350,8 +1406,6 @@ function CheckIn() {
 
       </main>
 
-      {/* FOOTER */}
-
       {step <= TOTAL_STEPS && (
         <footer className="checkin-footer">
 
@@ -1369,11 +1423,6 @@ function CheckIn() {
     </div>
   )
 }
-
-
-/* =========================================================
-   NAVIGATION BUTTONS
-   ========================================================= */
 
 function NavigationButtons({
   back,
@@ -1407,11 +1456,6 @@ function NavigationButtons({
   )
 }
 
-
-/* =========================================================
-   SNAPSHOT CARD
-   ========================================================= */
-
 function SnapshotCard({
   icon,
   title,
@@ -1439,9 +1483,13 @@ function SnapshotCard({
 
       </div>
 
-      <h3>{title}</h3>
+      <h3>
+        {title}
+      </h3>
 
-      <p>{text}</p>
+      <p>
+        {text}
+      </p>
 
     </article>
   )
